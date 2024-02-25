@@ -26,8 +26,11 @@ export default function countriesSearch() {
         const res = await axios.get(
           `https://restcountries.com/v3.1/name/${inp}`
         );
-        setData(res.data);
-        console.log(res.data);
+        if(inp === "ind"){
+           const x = [res.data[0],res.data[1],res.data[2]]
+           setData(x)
+        }else setData(res.data);
+        // console.log(res.data);
       } catch (err) {
         if (err.response.status === 404 && inp !== "") setData([]);
         console.log(err);
